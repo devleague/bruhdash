@@ -9,8 +9,14 @@ global.bruhdash = {
     return newArr;
   },
 
-  compact: function() {
-
+  compact: function(arr) {
+    var newArr = [];
+    for (var i = 0; i < arr.length; i++) {
+      if (!!arr[i]){
+        newArr.push(arr[i]);
+      }
+    }
+    return newArr;
   },
 
   difference: function() {
