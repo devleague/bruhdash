@@ -2,11 +2,11 @@ var global = window || GLOBAL;
 
 global.bruhdash = {
   chunk: function(arr, num){
-      var newArr = [];
-      for (var i = 0; i < arr.length; i+=num) {
-        newArr.push(arr.slice(i, i + num));
-      }
-      return newArr;
+    var newArr = [];
+    for (var i = 0; i < arr.length; i+=num) {
+      newArr.push(arr.slice(i, i + num));
+    }
+    return newArr;
   },
 
   compact: function() {
