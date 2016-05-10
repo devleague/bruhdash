@@ -73,8 +73,11 @@ global.bruhdash = {
     return arr[0];
   },
 
-  indexOf: function () {
-
+  indexOf: function (arr, value, start) {
+    if (start === undefined){
+      start = 0;
+    }
+    return arr.indexOf(value, start);
   },
 
   inital: function () {
