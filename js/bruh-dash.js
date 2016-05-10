@@ -80,8 +80,8 @@ global.bruhdash = {
     return arr.indexOf(value, start);
   },
 
-  inital: function () {
-
+  initial: function (arr) {
+    return arr.slice(0, arr.length-1);
   },
 
   last: function () {
