@@ -105,8 +105,22 @@ global.bruhdash = {
     return -1;
   },
 
-  pull: function () {
-
+  pull: function (arr, values) {
+    var newArr = [];
+    for (var i = 0; i < arr.length; i++) {
+      var found = false;
+      for (var j = 1; j < arguments.length; j++) {
+        if (arr[i] === arguments[j]){
+          found = true;
+          break;
+        }
+      }
+      if (found === false){
+        newArr.push(arr[i]);
+      }
+    }
+    arr = newArr;
+    return arr;
   },
 
   pullAt: function () {
