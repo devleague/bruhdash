@@ -84,8 +84,8 @@ global.bruhdash = {
     return arr.slice(0, arr.length-1);
   },
 
-  last: function () {
-
+  last: function (arr) {
+    return arr[arr.length-1];
   },
 
   lastIndexof: function () {
