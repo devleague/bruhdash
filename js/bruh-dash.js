@@ -77,7 +77,12 @@ global.bruhdash = {
     if (start === undefined){
       start = 0;
     }
-    return arr.indexOf(value, start);
+    for (var i = start; i < arr.length; i++) {
+      if (arr[i] === value){
+        return i;
+      }
+    }
+    return -1;
   },
 
   initial: function (arr) {
