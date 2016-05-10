@@ -150,8 +150,11 @@ global.bruhdash = {
     return newArr;
   },
 
-  take: function () {
-
+  take: function (arr, num) {
+    if (num === undefined){
+      num = 1;
+    }
+    return arr.slice(0, num);
   },
 
   takeRight: function () {
