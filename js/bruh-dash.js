@@ -157,8 +157,13 @@ global.bruhdash = {
     return arr.slice(0, num);
   },
 
-  takeRight: function () {
-
+  takeRight: function (arr, num) {
+    if (num === undefined){
+      num = 1;
+    }else if(num > arr.length){
+      num = arr.length;
+    }
+    return arr.slice(arr.length - num);
   },
 
   zip: function () {
