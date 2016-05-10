@@ -123,8 +123,15 @@ global.bruhdash = {
     return arr;
   },
 
-  pullAt: function () {
-
+  pullAt: function (arr, indexes) {
+    var removed = [];
+    for (var i = 1; i < arguments.length; i++) {
+      removed.push(arr[arguments[i]]);
+    }
+    for (var j = arguments.length - 1; j > 0; j--) {
+      arr.splice(arguments[j], 1);
+    }
+    return removed;
   },
 
   rest: function () {
