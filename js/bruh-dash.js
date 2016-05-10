@@ -166,8 +166,15 @@ global.bruhdash = {
     return arr.slice(arr.length - num);
   },
 
-  zip: function () {
-
+  zip: function (arr) {
+    var newArr = [];
+    for (var i = 0; i < arr.length; i++) {
+      newArr.push([]);
+      for (var j = 0; j < arguments.length; j++) {
+        newArr[i].push(arguments[j][i]);
+      }
+    }
+    return newArr;
   },
 
   unzip: function () {
