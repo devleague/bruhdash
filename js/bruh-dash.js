@@ -56,8 +56,17 @@ global.bruhdash = {
     return newArr;
   },
 
-  fill: function() {
-
+  fill: function(arr, value, start, end) {
+    if (start === undefined){
+      start = 0;
+    }
+    if (end === undefined){
+      end = arr.length;
+    }
+    for (var i = start; i < end; i++) {
+      arr[i] = value;
+    }
+    return arr;
   },
 
   first: function () {
