@@ -93,8 +93,16 @@ global.bruhdash = {
     return arr[arr.length-1];
   },
 
-  lastIndexof: function () {
-
+  lastIndexOf: function (arr, value, start) {
+    if (start === undefined){
+      start = arr.length - 1;
+    }
+    for (var i = start; i >= 0; i--) {
+      if (arr[i] === value){
+        return i;
+      }
+    }
+    return -1;
   },
 
   pull: function () {
