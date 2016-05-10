@@ -136,8 +136,18 @@ global.bruhdash = {
 
   },
 
-  slice: function () {
-
+  slice: function (arr, start, end) {
+    var newArr = [];
+    if (start === undefined){
+      start = 0;
+    }
+    if (end === undefined){
+      end = arr.length - 1;
+    }
+    for (var i = start; i < end; i++) {
+      newArr.push(arr[i]);
+    }
+    return newArr;
   },
 
   take: function () {
