@@ -44,8 +44,16 @@ global.bruhdash = {
     return newArr;
   },
 
-  dropRight: function() {
-
+  dropRight: function(arr, num) {
+    if (num === undefined){
+      num = -1;
+    }else if (num === 0){
+      num = undefined;
+    }else{
+      num *= -1;
+    }
+    var newArr = arr.slice(0, num);
+    return newArr;
   },
 
   fill: function() {
