@@ -182,9 +182,10 @@ global.bruhdash = {
     for (var i = 0; i < arr[0].length; i++) {
       newArr.push([]);
       for (var j = 0; j < arr.length; j++) {
-        newArr[i].push(arr[i][j]);
+        newArr[i].push(arr[j][i]);
       }
     }
+    return newArr;
   },
 
   without: function (arr, values) {
