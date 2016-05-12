@@ -132,8 +132,8 @@ global.bruhdash = {
     return removed.reverse();
   },
 
-  rest: function () {
-
+  rest: function (arr) {
+    return arr.slice(1);
   },
 
   slice: function (arr, start, end) {
@@ -177,8 +177,14 @@ global.bruhdash = {
     return newArr;
   },
 
-  unzip: function () {
-
+  unzip: function (arr) {
+    var newArr = [];
+    for (var i = 0; i < arr[0].length; i++) {
+      newArr.push([]);
+      for (var j = 0; j < arr.length; j++) {
+        newArr[i].push(arr[i][j]);
+      }
+    }
   },
 
   without: function (arr, values) {
