@@ -1,16 +1,22 @@
 var global = window || GLOBAL;
 
+
 global.bruhdash = {
+
+  chunks:chunks,
+
   chunk: function(array, number){
+    if(isNaN(number))
+      return false;
     if(number < 1)
       throw new RangeError('Parameter must be at least' + 1);
     var bag = [];
     var marker = 0;
-      for(var count = array.length; count < 0; count-= number){
-        var cut = array.slice(marker, marker + number);
-        bag.push(cut);
-        marker += number;
-      }
+    while(marker < array.length){
+      var cut = array.slice(marker, (marker + number));
+      bag.push(cut);
+      marker+= number;
+    }
 
     return bag;
   },
@@ -18,46 +24,46 @@ global.bruhdash = {
   compact: function(array) {
     var clean = [];
     for(var i = 0; i < array.length; i++)
-      if(array[i] !== 0 || array[i] !== null || array[i] !== '' || array[i] !== false || !isNaN(array[i]))
+      if(array[i] !== 0 && array[i] !== null && array[i] !== '' && array[i] !== false && !isNaN(array[i]))
         clean.push(array[i]);
     return clean;
   },
 
   difference: function(array) {
-  var count = array.length;
+  var count = arguments.length;
   var numbers = [];
   var returnArray = [];
-  for(var i = 0; i < array[0].length; i++){
-    var check = {
-      numValue: array[0][i],
+  for(var i = 0; i < array.length; i++){
+
+    numbers.push({
+      numValue: arguments[0][i],
       haveMatch:false
-    };
-    numbers.push(check);
+    });
   }
   var marker = 0;
-  while(marker < array[0].length){
+  while(marker < array.length){
     var match = numbers[marker];
     for(var j = 1; j < count; j++){
-      for(var k = 0; k < array[j].length; k++){
-        if(SameValueZero(match.numValue,array[j][k]))
+      for(var k = 0; k < arguments[j].length; k++){
+        if(match.numValue === arguments[j][k])
           match.haveMatch = true;
       }
     }
     marker++;
   }
-  for(i = 0; i < numbers.length;i++){
-    if(numbers[i].haveMatch === false)
-      returnArray.push(numbers[i].numValue);
+  for(var l = 0; l < numbers.length;l++){
+    if(numbers[l].haveMatch === false)
+      returnArray.push(numbers[l].numValue);
   }
 
   return returnArray;
   },
 
   drop: function(array,dropInt){
-    if(!dropInt)
-      return array.slice(1,array.length);
     if(dropInt === 0)
       return array;
+    if(!dropInt)
+      return array.slice(1,array.length);
     if(dropInt > array.length)
       return [];
     return  array.slice(dropInt, array.lenth);
@@ -65,13 +71,13 @@ global.bruhdash = {
   },
 
   dropRight: function(array,dropInt) {
-    if(!dropInt)
-      return array.slice(0,array.length - 2);
     if(dropInt === 0)
       return array;
+    if(!dropInt)
+      return array.slice(0,array.length - 1);
     if(dropInt > array.length)
       return [];
-    return  array.slice(dropInt, array.lenth- dropInt);
+    return  array.slice(0, array.length - dropInt);
 
   },
 
@@ -96,7 +102,7 @@ global.bruhdash = {
 
   indexOf: function (array, value, start) {
     var index = 0;
-    if(!isNan(start))
+    if(start)
       index = start;
     for(index; index < array.length;index++)
       if(array[index] === value)
@@ -104,7 +110,7 @@ global.bruhdash = {
   },
 
   inital: function (array) {
-    return array.slice(0, array.length - 2);
+    return array.slice(0, array.length - 1);
 
   },
 
@@ -114,7 +120,7 @@ global.bruhdash = {
 
   lastIndexof: function (array, value, start) {
   var index = array.length - 1;
-    if(!isNan(start))
+    if(!isNaN(start))
       index = start;
     for(index; index > 0;index--)
       if(array[index] === value)
@@ -127,25 +133,27 @@ global.bruhdash = {
     var newArray = [];
     var returnArray = [];
     for(var x = 0; x < arguments[0].length; x++){
-      var number = {
+
+      newArray.push({
         numValue:arguments[0][x],
         isMatch:false
-      };
-      newArray.push(number);
+      });
     }
 
-    for(var i=0; i<arguments[0].length;i++){
+    for(var i=0; i<newArray.length;i++){
       for(var j=1; j<length;j++){
-        if(SameValueZero(arguments[j],newArray[i].numValue))
+        if(arguments[j] === newArray[i].numValue)
             newArray[i].isMatch = true;
       }
     }
 
-    for(x = 0; x < arguments[0].length; x++)
-      arguments[0].shift();
-    for(var k = 0; k < newArray.length; k++)
+    while(arguments[0].length !== 0)
+      arguments[0].pop();
+    for(var k = 0; k < newArray.length; k++){
       if(newArray[k].isMatch === false)
         arguments[0].push(newArray[k].numValue);
+    }
+
 
 
     return arguments[0];
@@ -168,8 +176,8 @@ global.bruhdash = {
       }
     }
 
-    for(i = 0; i < checkArray.length; i++)
-      checkArray.shift();
+    while(checkArray.length !== 0)
+      arguments[0].pop();
     for(var k = 0; k < newArray.length; k++){
       checkArray.push(newArray[k]);
 
@@ -197,7 +205,7 @@ global.bruhdash = {
       return [];
     if(number> array.length)
       return array;
-    return  array.slice(0, number - 1);
+    return  array.slice(0, number);
 
 
   },
@@ -209,35 +217,33 @@ global.bruhdash = {
       return [];
     if(number> array.length)
       return array;
-    return  array.slice(number - 1, array.length - 1);
+    return  array.slice(number - 1, array.length);
 
   },
 
   zip: function () {
-    var length = arguments.length;
-    var returnArray = [];
-    for(var i = 0; i < arguments[0].length;i++){
-      var newArray = [];
-      var j = 0;
-      while(j < length - 1)
-        newArray.push(arguments[j][i]);
-      returnArray.push(newArray);
-    }
 
-    return returnArray;
+  var length = arguments.length;
+    var send = [];
+    for(var j = 0; j < arguments[0].length; j++){
+      var newArray = [];
+      for(var i = 0; i < length; i++)
+        newArray.push(arguments[i][j]);
+      send.push(newArray);
+    }
+    return send;
   },
 
   unzip: function (zip) {
-    var length = zip.length;
-    var returnArray = [];
-    for(var i = 0; i < zip[0].length;i++){
-      var j = 0;
+    var length =zip.length;
+    var send = [];
+    for(var j = 0; j < zip[0].length; j++){
       var newArray = [];
-      while(j < length - 1)
-        newArray.push(zip[j][i]);
-      returnArray.push(newArray);
+      for(var i = 0; i < length; i++)
+        newArray.push(zip[i][j]);
+      send.push(newArray);
     }
-    return returnArray;
+    return send;
   },
 
   without: function() {
@@ -254,7 +260,7 @@ global.bruhdash = {
 
     for(var i=0; i<arguments[0].length;i++){
       for(var j=1; j<length;j++){
-        if(SameValueZero(arguments[j],newArray[i].numValue))
+        if(arguments[j] === newArray[i].numValue)
             newArray[i].isMatch = true;
       }
     }
@@ -267,4 +273,25 @@ global.bruhdash = {
 
     return returnArray;
   }
+
 };
+/**
+ * Divides the array into chunks based off the parameter.
+ * @param {array} array
+ * @param {number} n
+ * @return {array} the number of arrays that can be divided from the orginial array.
+ */
+
+function chunks (array, number){
+    if(number < 1)
+      throw new RangeError('Parameter must be at least' + 1);
+    var bag = [];
+    var marker = 0;
+    while(marker < array.length - 1){
+      var cut = array.slice(marker, (marker + number));
+      bag.push(cut);
+      marker+= number;
+    }
+
+    return bag;
+  }
