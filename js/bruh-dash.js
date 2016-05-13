@@ -99,7 +99,7 @@ global.bruhdash = {
   },
 
   lastIndexOf: function (arr, value, start) {
-    if (start === undefined){
+    if (isNaN(start)){
       start = arr.length - 1;
     }
     for (var i = start; i >= 0; i--) {
@@ -132,7 +132,7 @@ global.bruhdash = {
     var removed = [];
     for (var i = arguments.length - 1; i > 0; i--) {
       removed.push(arr[arguments[i]]);
-      arr.splice(arguments[j], 1);
+      arr.splice(arguments[i], 1);
     }
     return removed.reverse();
   },
