@@ -143,10 +143,10 @@ global.bruhdash = {
 
   slice: function (arr, start, end) {
     var newArr = [];
-    if (start === undefined){
+    if (isNaN(start)){
       start = 0;
     }
-    if (end === undefined){
+    if (isNaN(end)){
       end = arr.length - 1;
     }
     for (var i = start; i < end; i++) {
