@@ -1,12 +1,15 @@
 var global = window || GLOBAL;
-
 global.bruhdash = {
   chunk: function(array, size){
+      if (size < 1 || isNaN(size)) {
+        size = 1;
+      }
       var chunkArray = [];
       for (var i = 0; i < array.length; i += size) {
         chunkArray.push(array.slice(i, i + size));
       }
       return chunkArray;
+
   },
 
   compact: function(array) {
