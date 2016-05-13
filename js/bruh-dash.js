@@ -26,14 +26,14 @@ global.bruhdash = {
   },
 
   first: function () {
-      
+
   },
 
   indexOf: function () {
 
   },
 
-  inital: function () {
+  initial: function () {
 
   },
 
