@@ -2,15 +2,18 @@ var global = window || GLOBAL;
 
 global.bruhdash = {
   /**
-    * Creates an array of elements split into groups
-    * the length of size.
+    * Creates an array of elements split into chunks
+    * of length size.
     * If array can’t be split evenly,
-    * the final chunk will be the remaining elements.
+    * the final chunk will contain the remaining elements.
     * @param array {Array} The array to process
     * @param size {Number} The length of each chunk
     * @returns {Array} The new array of chunks
     */
   chunk: function(array, size){
+    if(size < 1 || isNaN(size)) {
+      size = 1;
+    }
     var numChunks = Math.ceil(array.length / size);
     var chunkedArray = [];
     var chunkOfArray = [];
@@ -25,7 +28,8 @@ global.bruhdash = {
     return chunkedArray;
   },
   /**
-    * Creates an array with all falsey values removed. The values false, null, 0, "", undefined, and NaN are falsey.
+    * Creates an array with all falsey values removed.
+    * Falsey values: false, null, 0, "", undefined, and NaN.
     * @param array {Array} the array to compact
     * @returns {Array} the new array of filtered values
     */
@@ -45,7 +49,9 @@ global.bruhdash = {
   return newArray;
   },
   /**
-    * Creates an array of unique array values not included in the other given arrays using SameValueZero for equality comparisons. The order * of result values is determined by the order they occur in the first array.
+    * Creates an array of array values not included
+    * in the other given arrays. The order of result values
+    * is determined by the order they occur in the first array.
     * @param array {Array} The array to inspect.
     * @param values {Array} The values to exclude
     * @returns {Array} the new array of filtered values
@@ -146,8 +152,7 @@ global.bruhdash = {
 
   /**
     * Gets the index at which the first occurrence of
-    * value is found in array using SameValueZero for
-    * equality comparisons.
+    * value is found in array.
     * If fromIndex is negative, it’s used as the offset
     * from the end of array.
     * @param array {Array} The array to search.
@@ -213,7 +218,9 @@ global.bruhdash = {
   },
 
   /**
-  * This method is like _.indexOf except that it iterates over  elements of array from right to left.
+  * Gets the index at which the last occurrence of
+  * value is found in array. Iterates over
+  * elements of array from right to left.
   * @param array {Array} The array to search.
   * @param value {*} The value to search for.
   * @param fromIndex {Number} The index to search from.
@@ -237,7 +244,7 @@ global.bruhdash = {
     return -1;
   },
   /**
-  * Removes all given values from array using SameValueZero for equality comparisons.
+  * Removes all given values from array.
   * Note that this method mutates array.
   * @param array {Array} The array to modify.
   * @param values {Array} The values to remove
@@ -262,7 +269,8 @@ global.bruhdash = {
     return array;
   },
   /**
-  * Removes elements from array corresponding to indexes and returns an array of removed elements.
+  * Removes elements from array corresponding to indexes
+  * and returns an array of removed elements.
   * Note that this method mutates the array.
   * @param array {Array} The array to modify.
   * @param indexes {Numbers} The indexes of elements to remove.
@@ -409,7 +417,7 @@ global.bruhdash = {
 
   /**
   * Creates an array of grouped elements, the first of which contains the first elements of the given
-  * arrays, the second of which contains the second elements of the given arrays, and so on.
+  * arrays, the second of which contains the second elements of the given arrays, etc.
   * @param arrays {Arrays} The arrays to process
   * @returns Returns the new array of grouped elements.
   */
@@ -442,8 +450,8 @@ global.bruhdash = {
   },
 
   /**
-  * This method is like _.zip except that it accepts an array of grouped elements and \
-  * creates an array regrouping the elements to their pre-zip configuration.
+  * Accepts an array of grouped elements and creates an array regrouping the elements
+  * to their pre-zip configuration.
   * @param array {Array} The array of grouped elements to process.
   * @returns {Array} Returns the new array of regrouped elements.
   */
@@ -463,7 +471,7 @@ global.bruhdash = {
   },
 
   /**
-  * Creates an array excluding all given values using SameValueZero for equality comparisons.
+  * Creates an array excluding all given values.
   * @param array {Array} The array to inspect.
   * @param values {...*} The values to exclude.
   * @returns {Array} Returns the new array of filtered values.
