@@ -23,17 +23,35 @@ chunk: function chunk(array, size){
 
   },
 
-  compact: function compact(num) {
+  compact: function compact(array) {
+    var values = [];
+    for (var i = 0; i < array.length; i++){
+    if (array[i]){
+      values.push(array[i]);
 
+
+    }
+  }
+    return values;
 
 
   },
 
-  difference: function() {
+  difference: function difference(array, values) {
+    // var uniqueArr = [];
+    // for (var i = 0; i < array.length; i++){
+    //   if (array[i]
+
+    //   }
+
 
   },
 
-  drop: function(){
+  drop: function drop(array, n){
+    var newArr = [];
+
+
+
 
   },
 
@@ -41,7 +59,11 @@ chunk: function chunk(array, size){
 
   },
 
-  fill: function() {
+  fill: function fill(array, value, start, end){
+
+
+
+
 
   },
 
@@ -49,11 +71,14 @@ chunk: function chunk(array, size){
 
   },
 
-  indexOf: function () {
+  indexOf: function indexOf (array, value, index) {
+      return array.indexOf(value);
 
   },
 
-  inital: function () {
+  initial: function initial (array) {
+    return array.slice(0, -1);
+
 
   },
 
