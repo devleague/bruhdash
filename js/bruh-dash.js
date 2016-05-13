@@ -2,7 +2,7 @@ var global = window || GLOBAL;
 
 global.bruhdash = {
   chunk: function(arr, num){
-    if (num < 1 || isNaN(num) || undefined){
+    if (num < 1 || isNaN(num)){
       num = 1;
     }
     var newArr = [];
