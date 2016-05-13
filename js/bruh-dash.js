@@ -77,8 +77,10 @@ global.bruhdash = {
   },
 
   indexOf: function (arr, value, start) {
-    if (start === undefined){
+    if (isNaN(start)){
       start = 0;
+    }else if(start < 0){
+      start = start + arr.length;
     }
     for (var i = start; i < arr.length; i++) {
       if (arr[i] === value){
