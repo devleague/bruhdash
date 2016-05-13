@@ -111,7 +111,6 @@ global.bruhdash = {
   },
 
   pull: function (arr, values) {
-    var newArr = [];
     for (var i = 0; i < arr.length; i++) {
       var found = false;
       for (var j = 1; j < arguments.length; j++) {
@@ -120,11 +119,11 @@ global.bruhdash = {
           break;
         }
       }
-      if (found === false){
-        newArr.push(arr[i]);
+      if (found === true){
+        arr.splice(i,1);
+        i--;
       }
     }
-    arr = newArr;
     return arr;
   },
 
