@@ -156,7 +156,7 @@ global.bruhdash = {
   },
 
   take: function (arr, num) {
-    if (num === undefined){
+    if (isNaN(num)){
       num = 1;
     }
     return arr.slice(0, num);
