@@ -48,7 +48,7 @@ global.bruhdash = {
   },
 
   dropRight: function(arr, num) {
-    if (num === undefined){
+    if (isNaN(num)){
       num = -1;
     }else if (num === 0){
       num = undefined;
