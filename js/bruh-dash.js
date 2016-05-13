@@ -60,10 +60,10 @@ global.bruhdash = {
   },
 
   fill: function(arr, value, start, end) {
-    if (start === undefined){
+    if (isNaN(start)){
       start = 0;
     }
-    if (end === undefined){
+    if (isNaN(end)){
       end = arr.length;
     }
     for (var i = start; i < end; i++) {
