@@ -82,7 +82,12 @@ chunk: function chunk(array, size){
     return lastIndex;
   },
 
-  pull: function () {
+  pull: function pull(array, values) {
+    var pulled = [];
+      if (array.indexOf(values) !== -1){
+        pulled.push(array.slice(0, values));
+      }
+      return pulled;
 
   },
 
@@ -90,7 +95,9 @@ chunk: function chunk(array, size){
 
   },
 
-  rest: function () {
+  rest: function rest(array) {
+    var tail = array.slice(1);
+    return tail;
 
   },
 
