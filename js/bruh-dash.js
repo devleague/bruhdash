@@ -171,18 +171,14 @@ chunk: function chunk(array, size){
         for (var j = 1; j < arguments.length; j++){
           if (array[i] === arguments[j]){
             arr = true;
-            break;
-
           }
         }
         if (arr === false){
           newArr.push(array[i]);
-
       }
     }
         return newArr;
   }
-
 
 };
 
