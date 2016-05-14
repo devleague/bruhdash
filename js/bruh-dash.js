@@ -50,9 +50,9 @@ chunk: function chunk(array, size){
   },
 
   drop: function drop(array, n){
-
-
-
+    var dropArray = [];
+    dropArray.push(array.slice(n));
+    return dropArray;
 
   },
 
