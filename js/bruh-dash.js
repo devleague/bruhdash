@@ -58,6 +58,7 @@ global.bruhdash = {
     */
   difference: function(array, values) {
     var newArray = [];
+
     // set newArray equal to array
     for(var i = 0; i < array.length; i++){
       newArray[i] = array[i];
@@ -65,7 +66,9 @@ global.bruhdash = {
     // remove matching elements from newArray
     for(i = 0; i < array.length; i++) {
       for(var j = 0; j < values.length; j++) {
-        if(array[i] === values [j]) {
+        //console.log("Comparing " + array[i] + " to " + values[j]);
+        if(array[i] === values[j]) {
+          //console.log("Removing " + newArray[i]);
           newArray.splice(newArray.indexOf(array[i]), 1);
         }
       }
@@ -75,42 +78,48 @@ global.bruhdash = {
   /**
     * Creates a slice of array with n elements dropped from the beginning.
     * @param array {Array} The array to query.
-    * @param n {number} The number of elements to drop.
+    * @param n {number} The number of elements to drop. Default value  = 1.
     * @returns {Array} Returns the slice of array.
     */
   drop: function(array, n){
+    var newArray = [];
+    newArray = array.slice(0);
     if(n === undefined) {
-      return array;
+      newArray.shift();
+      return newArray;
     }
     if(n < array.length) {
       for(var i = 0; i < n; i++) {
-      array.shift();
+        newArray.shift();
       }
     }
     else {
-      array = [];
+      newArray = [];
     }
-    return array;
+    return newArray;
   },
   /**
     * Creates a slice of array with n elements dropped from the end.
     * @param array {Array} The array to query.
-    * @param n {Number} The number of elements to drop.
+    * @param n {Number} The number of elements to drop. Default value = 1.
     * @returns {Array} Returns the slice of array.
     */
   dropRight: function(array, n) {
+    var newArray = [];
+    newArray = array.slice(0);
     if(n === undefined) {
-      return array;
+      newArray.pop();
+      return newArray;
     }
     if(n < array.length) {
       for(var i = 0; i < n; i++) {
-      array.pop();
+      newArray.pop();
       }
     }
     else {
-      array = [];
+      newArray = [];
     }
-    return array;
+    return newArray;
   },
   /**
     * Fills elements of array with value from start up to, but not including, end.
@@ -122,17 +131,20 @@ global.bruhdash = {
     */
   fill: function(array, value, start, end) {
     var i = 0;
+    // if no start/end indices provided, fill entire array with value
     if(start === undefined && end === undefined) {
       for(i = 0; i < array.length; i++) {
         array[i] = value;
       }
     }
+    // if no end index provided, fill entire array with value
     else if(end === undefined) {
       end = array.length;
       for(i = start; i < array.length; i++) {
         array[i] = value;
       }
     }
+    // otherwise, fill array with value according to start/end indices
     else {
       for(i = start; i < end; i++) {
         array[i] = value;
@@ -206,7 +218,7 @@ global.bruhdash = {
       newArray[i] = array[i];
     }
     return newArray;
-    },
+  },
 
   /**
   * Gets the last element of array
@@ -251,21 +263,18 @@ global.bruhdash = {
   * @returns {Array} Returns array
   */
   pull: function (array) {
-    console.log("num arguments = " + arguments.length);
+    //console.log("num arguments = " + arguments.length);
     var newArray = [];
     var i;
     var j;
-    for(i = 0; i < array.length; i++) {
-      newArray[i] = array[i];
-    }
-    for(i = 0; i < array.length; i++) {
+    newArray = array.slice(0);
+    for(i = 0; i < newArray.length; i++) {
       for(j = 1; j < arguments.length; j++) {
-        if(array[i] === arguments[j]) {
-          newArray.splice(newArray.indexOf(array[i]), 1);
+        if(newArray[i] === arguments[j]) {
+          array.splice(array.indexOf(newArray[i]), 1);
         }
       }
     }
-    array = newArray;
     return array;
   },
   /**
@@ -280,35 +289,23 @@ global.bruhdash = {
     var i;
     var j;
     var newArray = [];
-    var newArrayCount = 0;
     var pulledValues = [];
     var pullCount = 0;
 
-    for(i = 0; i < array.length; i++) {
+    newArray = array.slice(0);
+    for(i = 0; i < newArray.length; i++) {
       for(j = 1; j < arguments.length; j++) {
         // store pulled values into pulledArray
-        console.log("comparing " + i + " to " + arguments[j]);
+        //console.log("comparing " + i + " to " + arguments[j]);
         if(i === arguments[j]) {
-          console.log(i + " matches " + arguments[j]);
-          pulledValues[pullCount] = array[i];
+          //console.log(i + " matches " + arguments[j]);
+          pulledValues[pullCount] = newArray[i];
           pullCount++;
           j = arguments.length;
-          continue;
-        }
-        // store non-pulled values into new array
-        else if(j === arguments.length - 1) {
-          console.log("assigning " + array[i] + " to index " + newArrayCount);
-          newArray[newArrayCount] = array[i];
-          newArrayCount++;
+          array.splice(newArray.indexOf(array[i]), 1);
         }
       }
     }
-    console.log("newArray: " + newArray);
-    array = [];
-    for(i = 0; i < newArray.length; i++) {
-        array[i] = newArray[i];
-    }
-    console.log(array.toString());
     return pulledValues;
   },
 
@@ -336,7 +333,7 @@ global.bruhdash = {
   * @returns {Array} Returns the slice of array.
   */
   slice: function (array, start, end) {
-    if(start > array.length || end < start || end < 0) {
+    if(start > array.length || end < start || end < 0 || end > array.length) {
       console.log("Invalid start/end.");
       return array;
     }
@@ -352,17 +349,20 @@ global.bruhdash = {
   /**
   * Creates a slice of array with n elements taken from the beginning.
   * @param array {Array} The array to query.
-  * @param n {Number} The number of elements to take
+  * @param n {Number} The number of elements to take. Default value = 1.
   * @returns {Array} returns the slice of array.
   */
   take: function () {
     var i;
     var newArray = [];
-    if(n === undefined) {
+    var array = [];
+    // if n is undefined
+    if(arguments[1] === undefined) {
       // take just the first element
-      newArray[0] = array[0];
+      newArray[0] = arguments[0];
     }
     else if(n > array.length) {
+      array = arguments[0].splice(0);
       // take all elements
       for(i = 0; i < array.length; i++) {
         newArray[i] = array[i];
@@ -373,6 +373,7 @@ global.bruhdash = {
       newArray = [];
     }
     else {
+      array = arguments[0].splice(0);
       // take the number of values specified
       for(i = 0; i < n; i++) {
         newArray[i] = array[i];
