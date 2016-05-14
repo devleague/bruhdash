@@ -116,34 +116,59 @@ global.bruhdash = {
 
   pullAt: function (array, indexes) {
     var pullArray = [];
-    var newArray = array.slice(0,array.length);
     for(var i = 0; i < array.length; i++){
       for(var j = 1; j < arguments.length; j++){
-        debugger;
-        if(i === arguments[j]){
+        if(i === arguments[j])
           pullArray.push(array[i]);
-          newArray.splice(i,1);
-        }
       }
     }
-    array = newArray;
     return pullArray;
   },
 
-  rest: function () {
-
+  rest: function (array) {
+    var restArray = array.slice(1,array.length);
+    return restArray;
   },
 
-  slice: function () {
-
+  slice: function (array, start, end) {
+    if(isNaN(start) || start < 0){
+      start = 0;
+    }
+    if(isNaN(end) || end > array.length){
+      end = array.length;
+    }
+    var slicedArray = [];
+    for(start; start < end; start++){
+      slicedArray.push(array[start]);
+    }
+    return slicedArray;
   },
 
-  take: function () {
-
+  take: function (array, n) {
+    if(isNaN(n)){
+      n = 1;
+    }else if(n > array.length){
+      n = array.length;
+    }
+    var takeArray = [];
+    for(var i = 0; i < n; i++){
+      takeArray.push(array[i]);
+    }
+    return takeArray;
   },
 
-  takeRight: function () {
-
+  takeRight: function (array, n) {
+    if(isNaN(n)){
+      n = 1;
+    }else if(n > array.length){
+      n = array.length;
+    }
+    var takeRightArray = [];
+    for(var i = 0; i < n; i++){
+      var popped = array.pop();
+      takeRightArray.unshift(popped);
+    }
+    return takeRightArray;
   },
 
   zip: function () {
