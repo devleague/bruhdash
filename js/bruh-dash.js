@@ -77,7 +77,9 @@ chunk: function chunk(array, size){
 
   },
 
-  last: function () {
+  last: function last(item) {
+    var lastElement = item.pop();
+    return lastElement;
 
   },
 
