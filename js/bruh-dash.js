@@ -17,10 +17,8 @@ chunk: function chunk(array, size){
     while (arr.length){
       var chunked = arr.splice(0, size);
       chunkArr.push(chunked);
-
     }
     return chunkArr;
-
   },
 
   compact: function compact(array) {
@@ -28,13 +26,9 @@ chunk: function chunk(array, size){
     for (var i = 0; i < array.length; i++){
     if (array[i]){
       values.push(array[i]);
-
-
     }
   }
     return values;
-
-
   },
 
   difference: function difference(array, values) {
@@ -43,7 +37,6 @@ chunk: function chunk(array, size){
       if (values.indexOf(array[i]) === -1) {
         diffArr.push(array[i]);
       }
-
     }
     return diffArr;
 
@@ -53,25 +46,23 @@ chunk: function chunk(array, size){
     var dropArray = [];
     dropArray.push(array.slice(n));
     return dropArray;
-
   },
 
   dropRight: function dropRight(array, n) {
     var dropIt = [];
     dropIt.push(array.slice(0, -n));
     return dropIt;
-
   },
 
   fill: function fill(array, value, start, end){
 
 
-
-
-
   },
 
-  first: function () {
+  first: function first(array) {
+    var firstElement = array.shift();
+    return firstElement;
+
 
   },
 
