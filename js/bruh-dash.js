@@ -107,7 +107,9 @@ chunk: function chunk(array, size){
 
   },
 
-  take: function () {
+  take: function take(array, n) {
+    var taken = array.slice(0, n);
+    return taken;
 
   },
 
