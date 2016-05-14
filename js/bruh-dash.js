@@ -84,14 +84,33 @@ chunk: function chunk(array, size){
 
   pull: function pull(array, values) {
     var pulled = [];
+    for (var i = 0; i < array.length; i++){
       if (array.indexOf(values) !== -1){
-        pulled.push(array.slice(0, values));
+        var arr = false;
+        for (var j = 0; j < arguments.length; j++){
+          if (arr === false){
+            pulled.push(array[i]);
+          if (arr === true){
+            arr.splice(i, 1);
+
+        }
+      }
+    }
       }
       return pulled;
+    }
 
   },
 
-  pullAt: function () {
+  pullAt: function pullAt(array, indexes) {
+    var pulled = [];
+    for (var i = 0; i < array.length; i++){
+      pulled.push(array[arguments[i]]);
+    }
+    for (var j = array.length - 1; j > 0; j--){
+      array.splice(arguments[j], 0);
+    }
+    return pulled;
 
   },
 
@@ -113,21 +132,58 @@ chunk: function chunk(array, size){
 
   },
 
-  takeRight: function () {
+  takeRight: function takeRight(array, n) {
+    var takeR = array.slice(n, -1);
+    return takeR;
 
   },
 
-  zip: function () {
+  zip: function zip(array) {
+    var zipped = [];
+    for (var i=0; i < array.length; i++){
+      zipped.push([]);
+      for (var j = 0; j < arguments.length; j++){
+        zipped[i].push(arguments[j][i]);
+      }
+    }
+    return zipped;
 
   },
 
-  unzip: function () {
+  unzip: function unzip(array) {
+    var unzipped = [];
+    for (var i = 0; i < array.length; i++){
+      unzipped.push([]);
+      for (var j = 0; j < this.length; j++){
+        unzipped[i].push(array[i][j]);
+        unzipped[i].push(array[j][i]);
+      }
+    }
+    return unzipped;
+
 
   },
 
-  without: function() {
+  without: function without(array, values) {
+     var newArr = [];
+    for (var i = 0; i < array.length; i++){
+        var arr = false;
+        for (var j = 1; j < arguments.length; j++){
+          if (array[i] === arguments[j]){
+            arr = true;
+            break;
 
+          }
+        }
+        if (arr === false){
+          newArr.push(array[i]);
+
+      }
+    }
+        return newArr;
   }
+
+
 };
 
 
