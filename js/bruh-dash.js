@@ -425,19 +425,19 @@ global.bruhdash = {
   zip: function () {
     var newArray = [];
     if(arguments.length < 1) {
-      console.log("no arguments.");
+      //console.log("no arguments.");
       return undefined;
     }
     else if(arguments.length < 2) {
-      console.log("1 argument.");
+      //console.log("1 argument.");
       return arguments[0];
     }
     else {
-      console.log("arguments >= 2");
+      //console.log("arguments >= 2");
       // create a new array
-      newArray = new Array(arguments[0].length);
+      newArray = [];
       for(var i = 0; i < arguments[0].length; i++) {
-        newArray[i] = new Array(arguments.length);
+        newArray[i] = [];
       }
       // fill array with zipped values
       for(var j = 0; j < arguments[0].length; j++) {
@@ -445,7 +445,7 @@ global.bruhdash = {
           newArray[j][k] = arguments[k][j];
         }
       }
-      console.log("Created newArray: " + newArray);
+      //console.log("Created newArray: " + newArray);
     }
     return newArray;
   },
@@ -460,7 +460,7 @@ global.bruhdash = {
     // create a new array
   var newArray = new Array(arguments[0].length);
   for(var i = 0; i < arguments[0].length; i++) {
-    newArray[i] = new Array(arguments.length);
+    newArray[i] = [];
   }
   // fill array with zipped values
   for(var j = 0; j < arguments[0].length; j++) {
@@ -482,9 +482,13 @@ global.bruhdash = {
     var count = 0;
     for(var i = 0; i < array.length; i++) {
       for(var j = 1; j < arguments.length; j++) {
+        // if element matches value, do not add to newArray
+        // skip to next element in array
         if(array[i] === arguments[j]) {
           j = arguments.length;
         }
+        // if element does not match value and all elements
+        // of row i have been compared, add element to newArray
         else if(array[i] !== arguments[j] && j === arguments.length - 1) {
           newArray[count] = array[i];
           count++;
