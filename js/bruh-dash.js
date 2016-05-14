@@ -38,17 +38,18 @@ chunk: function chunk(array, size){
   },
 
   difference: function difference(array, values) {
-    // var uniqueArr = [];
-    // for (var i = 0; i < array.length; i++){
-    //   if (array[i]
+    var diffArr = [];
+    for (var i = 0; i < array.length; i++){
+      if (values.indexOf(array[i]) === -1) {
+        diffArr.push(array[i]);
+      }
 
-    //   }
-
+    }
+    return diffArr;
 
   },
 
   drop: function drop(array, n){
-    var newArr = [];
 
 
 
