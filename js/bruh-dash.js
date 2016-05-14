@@ -62,29 +62,24 @@ chunk: function chunk(array, size){
   first: function first(array) {
     var firstElement = array.shift();
     return firstElement;
-
-
   },
 
   indexOf: function indexOf (array, value, index) {
       return array.indexOf(value);
-
   },
 
   initial: function initial (array) {
     return array.slice(0, -1);
-
-
   },
 
   last: function last(item) {
     var lastElement = item.pop();
     return lastElement;
-
   },
 
-  lastIndexof: function () {
-
+  lastIndexof: function lastIndexof(array, value) {
+    var lastIndex = array.lastIndexOf(value);
+    return lastIndex;
   },
 
   pull: function () {
