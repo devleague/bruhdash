@@ -113,7 +113,7 @@ global.bruhdash = {
     }
     return array;
   },
-
+//not done
   pullAt: function (array, indexes) {
     var pullArray = [];
     for(var i = 0; i < array.length; i++){
@@ -170,16 +170,40 @@ global.bruhdash = {
     }
     return takeRightArray;
   },
-
-  zip: function () {
-
+//not done
+  zip: function (arrays) {
+    var zipArray = [];
+    for(var i = 0; i < arguments.length; i++){
+      // debugger;
+      zipArray[i] = [];
+      for(var j = 0; j <= arguments[i].length; j++){
+        zipArray[i][j] = arguments[j][i];
+      }
+    }
+    return zipArray;
+  },
+//not done
+  unzip: function (array) {
+    var unzipArray = [];
+    for(var i = 0; i < array.length; i++){
+      // debugger;
+      unzipArray[i] = [];
+      for(var j = 0; j < array[i].length; j++){
+        unzipArray[i][j] = array[j][i];
+      }
+    }
+    return unzipArray;
   },
 
-  unzip: function () {
-
-  },
-
-  without: function() {
-
+  without: function(array, values) {
+    for(var i = 0; i < array.length; i++){
+      for(var j = 1; j < arguments.length; j++){
+        if(array[i] === arguments[j]){
+          array.splice(i,1);
+          i--;
+        }
+      }
+    }
+    return array;
   }
 };
