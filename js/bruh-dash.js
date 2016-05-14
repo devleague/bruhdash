@@ -56,7 +56,10 @@ chunk: function chunk(array, size){
 
   },
 
-  dropRight: function() {
+  dropRight: function dropRight(array, n) {
+    var dropIt = [];
+    dropIt.push(array.slice(0, -n));
+    return dropIt;
 
   },
 
