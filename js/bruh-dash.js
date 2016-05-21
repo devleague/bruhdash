@@ -55,7 +55,8 @@ chunk: function chunk(array, size){
   },
 
   fill: function fill(array, value, start, end){
-
+    var filled = array.splice(start, end, value);
+    return filled;
 
   },
 
