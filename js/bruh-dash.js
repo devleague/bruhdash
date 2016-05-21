@@ -16,44 +16,48 @@ global.bruhdash = {
   },
 
   compact: function(array) {
+    var compArray = array.slice(0,array.length);
     for(var i = 0; i < array.length; i++){
       if(array[i] === false || array[i] === null || array[i] === 0
         || array[i] === "" || array[i] === undefined || isNaN(array[i])){
-        array.splice(i,1);
+        compArray.splice(i,1);
       }
     }
-    return array;
+    return compArray;
   },
 
   difference: function(array, values) {
+    var diffArray = array.slice(0, array.length);
     for(var i = 0; i < array.length; i++){
       for(var j = 0; j < values.length; j++){
         if(array[i] === values[j]){
-          array.splice(i,1);
+          diffArray.splice(i,1);
         }
       }
     }
-    return array;
+    return diffArray;
   },
 
   drop: function(array, n){
+    var dropArray = array.slice(0,array.length);
     if(isNaN(n) || n < 0){
       n = 1;
     }
     for(var i = 0; i < n; i++){
-        array.shift();
+        dropArray.shift();
     }
-    return array;
+    return dropArray;
   },
 
   dropRight: function(array, n) {
+    var dropRightArray = array.slice(0,array.length);
     if(isNaN(n) || n < 0){
       n = 1;
     }
     for(var i = 0; i < n; i++){
-        array.pop();
+        dropRightArray.pop();
     }
-    return array;
+    return dropRightArray;
   },
 
   fill: function(array, value, start, end) {
@@ -113,13 +117,19 @@ global.bruhdash = {
     }
     return array;
   },
-//not done
+
   pullAt: function (array, indexes) {
     var pullArray = [];
-    for(var i = 0; i < array.length; i++){
-      for(var j = 1; j < arguments.length; j++){
-        if(i === arguments[j])
-          pullArray.push(array[i]);
+    var index = [];
+    for(var k = 1; k < arguments.length; k++){
+        index.push(arguments[k]);
+    }
+    index.sort();
+    for(var i = array.length-1; i >= 0; i--){
+      for(var j = index.length-1; j >= 0; j--){
+        if(i === index[j]){
+          pullArray.unshift((array.splice(i,1))[0]);
+        }
       }
     }
     return pullArray;
