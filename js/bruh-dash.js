@@ -180,26 +180,26 @@ global.bruhdash = {
     }
     return takeRightArray;
   },
-//not done
+
   zip: function (arrays) {
     var zipArray = [];
-    for(var i = 0; i < arguments.length; i++){
-      // debugger;
+    for(var i = 0; i < arguments[i].length; i++){
       zipArray[i] = [];
-      for(var j = 0; j <= arguments[i].length; j++){
-        zipArray[i][j] = arguments[j][i];
+      for(var j = 0; j < arguments.length; j++){
+        zipArray[i].push(arguments[j][i]);
       }
     }
     return zipArray;
   },
-//not done
+
   unzip: function (array) {
     var unzipArray = [];
-    for(var i = 0; i < array.length; i++){
-      // debugger;
+    //not sure if you can do this...
+    //I'm assuming that all the arrays are the same size
+    for(var i = 0; i < array[0].length; i++){
       unzipArray[i] = [];
-      for(var j = 0; j < array[i].length; j++){
-        unzipArray[i][j] = array[j][i];
+      for(var j = 0; j < array.length; j++){
+        unzipArray[i].push(array[j][i]);
       }
     }
     return unzipArray;
