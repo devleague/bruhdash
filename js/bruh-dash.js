@@ -129,9 +129,11 @@ global.bruhdash = {
 
   pullAt: function (arr, indexes) {
     var removed = [];
-    for (var i = arguments.length - 1; i > 0; i--) {
-      removed.push(arr[arguments[i]]);
-      arr.splice(arguments[i], 1);
+    for (var i = 0; i < indexes.length; i++) {
+      removed.push(arr[indexes[i]]);
+    }
+    for (var j = indexes.length - 1; j >= 0; j--) {
+      arr.splice(indexes[j], 1);
     }
     return removed.reverse();
   },
