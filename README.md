@@ -8,9 +8,9 @@ _It is your job to implment your first library. Bruh._
 ####Install http-server:
 `npm install -g http-server`
 
-You will need to do your work in the browser by starting http-server in your terminal:
+You will need to do your work in the browser by starting live-server in your terminal:
 
-`$ http-server`
+`$ live-server`
 
 ...which will allow you to use your browser to load your libary at [http://localhost:8080](http://localhost:8080)
 
