@@ -64,3 +64,11 @@ Implement the following methods to show your new Array chops:
 [unzip(array)](https://lodash.com/docs#unzip)
 
 [without(array, [values])](https://lodash.com/docs#without)
+
+[forEach(collection, [iteratee])](https://lodash.com/docs/4.17.4#forEach)
+
+[map(collection, [iteratee])](https://lodash.com/docs/4.17.4#map)
+
+[filter(collection, [predicate])](https://lodash.com/docs/4.17.4#filter)
+
+[reduce(collection, [iteratee], [accumulator])](https://lodash.com/docs/4.17.4#reduce)
