@@ -79,5 +79,25 @@ global.bruhdash = {
 
   without: function() {
 
+  },
+
+  forEach: function() {
+
+  },
+
+  // STRETCH GOALS!
+
+  map: function() {
+
+  },
+
+  filter: function() {
+
+  },
+
+  // SUPER STRETCH GOAL!
+
+  reduce: function() {
+    
   }
 };

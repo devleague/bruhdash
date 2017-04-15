@@ -8,9 +8,9 @@ _It is your job to implment your first library. Bruh._
 ####Install http-server:
 `npm install -g http-server`
 
-You will need to do your work in the browser by starting http-server in your terminal:
+You will need to do your work in the browser by starting live-server in your terminal:
 
-`$ http-server`
+`$ live-server`
 
 ...which will allow you to use your browser to load your libary at [http://localhost:8080](http://localhost:8080)
 
@@ -64,3 +64,11 @@ Implement the following methods to show your new Array chops:
 [unzip(array)](https://lodash.com/docs#unzip)
 
 [without(array, [values])](https://lodash.com/docs#without)
+
+[forEach(collection, [iteratee])](https://lodash.com/docs/4.17.4#forEach)
+
+[map(collection, [iteratee])](https://lodash.com/docs/4.17.4#map)
+
+[filter(collection, [predicate])](https://lodash.com/docs/4.17.4#filter)
+
+[reduce(collection, [iteratee], [accumulator])](https://lodash.com/docs/4.17.4#reduce)
