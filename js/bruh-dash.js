@@ -2,7 +2,7 @@ var global = window || GLOBAL;
 
 global.bruhdash = {
   chunk: function(){
-
+    
   },
 
   compact: function() {

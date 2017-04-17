@@ -196,7 +196,7 @@ describe("#map", function() {
     assert.deepEqual(bruhdash.map([1,2,3], function(item) {
       return item * 2
     }), [2,4,6])
-  }
+  })
   it('should be able to iterate over objects and return a new array', function() {
     assert.deepEqual(bruhdash.map({'a':1, 'b':2, 'c':3}, function(item) {
       return item * 2
@@ -222,7 +222,7 @@ describe("#reduce", function() {
     assert.deepEqual(bruhdash.reduce([1,2,3], function(total, value){
       return total + value
     }), 6)
-  }
+  })
   it('should be able to return accumulated value for an object', function() {
     assert.deepEqual(bruhdash.reduce({'a':1, 'b':2, 'c':3}, function(total, value) {
       return total + value
