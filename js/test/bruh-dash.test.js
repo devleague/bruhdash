@@ -118,10 +118,6 @@ describe("#pullAt", function() {
   })
 })
 
-// describe("#rest", function() {
-  
-// })
-
 describe("#slice", function() {
   it('should return a new array of the start and end indices specified', function() {
     assert.deepEqual(bruhdash.slice([1,2,3,4,5], 2,4), [3,4]);
