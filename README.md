@@ -25,7 +25,15 @@ https://lodash.com/docs#without
 
 Implement the following methods to show your new Array chops:
 
-[chunk(array, [size=1])](https://lodash.com/docs#chunk)
+[first(array)](https://lodash.com/docs#first)
+
+[last(array)](https://lodash.com/docs#last)
+
+[indexOf(array, value, [fromIndex=0])](https://lodash.com/docs#indexOf)
+
+[lastIndexOf(array, value, [fromIndex=array.length-1])](https://lodash.com/docs#lastIndexOf)
+
+[initial(array)](https://lodash.com/docs#initial)
 
 [compact(array)](https://lodash.com/docs#compact)
 
@@ -37,21 +45,9 @@ Implement the following methods to show your new Array chops:
 
 [fill(array, value, [start=0], [end=array.length])](https://lodash.com/docs#fill)
 
-[first(array)](https://lodash.com/docs#first)
-
-[indexOf(array, value, [fromIndex=0])](https://lodash.com/docs#indexOf)
-
-[initial(array)](https://lodash.com/docs#initial)
-
-[last(array)](https://lodash.com/docs#last)
-
-[lastIndexOf(array, value, [fromIndex=array.length-1])](https://lodash.com/docs#lastIndexOf)
-
 [pull(array, [values])](https://lodash.com/docs#pull)
 
 [pullAt(array, [indexes])](https://lodash.com/docs#pullAt)
-
-[rest(array)](https://lodash.com/docs#rest)
 
 [slice(array, [start=0], [end=array.length])](https://lodash.com/docs#slice)
 
@@ -59,11 +55,13 @@ Implement the following methods to show your new Array chops:
 
 [takeRight(array, [n=1])](https://lodash.com/docs#takeRight)
 
+[without(array, [values])](https://lodash.com/docs#without)
+
 [zip([arrays])](https://lodash.com/docs#zip)
 
 [unzip(array)](https://lodash.com/docs#unzip)
 
-[without(array, [values])](https://lodash.com/docs#without)
+[chunk(array, [size=1])](https://lodash.com/docs#chunk)
 
 [forEach(collection, [iteratee])](https://lodash.com/docs/4.17.4#forEach)
 

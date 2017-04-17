@@ -2,25 +2,40 @@
 // var should = chai.should();
 var assert = chai.assert;
 
+describe("#first", function() {
+  it('should return the first element of an array', function(){
+    assert.deepEqual(bruhdash.first([1,2,3]), 1)
+  })
+})
 
-describe("#chunk", function() {
-  it("should be able to chunk if the array length is unevenly divided by size", function() {
-    assert.deepEqual(bruhdash.chunk([1,2,3,4,5], 2), [[1,2], [3,4], [5]]);
+describe("#last", function() {
+  it('should return the last element of an array', function() {
+    assert.deepEqual(bruhdash.last([1,2,3]), 3);
   })
-  it("for empty arrays should return an empty array", function() {
-    assert.deepEqual(bruhdash.chunk([], 2), [] );
-  })
-  it("should return an empty array if size param is 0", function() {
-    assert.deepEqual(brudhash.chunk([1,2,3], 0), []);
-  })
-  it("should return the original array in an array if size param is equal to the array length", function() {
-    assert.deepEqual(bruhdash.chunk([1,2,3], 3), [[1,2,3]]);
-  })
-  it("should return the original array in an array if size param is more than array length", function(){
-    assert.deepEqual(bruhdash.chunk([1,2,3],5), [[1,2,3]]);
-  })
-  it("should ")
+})
 
+describe("#indexOf", function() {
+  it('should return index of first value matched from left to right', function() {
+    assert.deepEqual(bruhdash.indexOf([1,2,3], 2), 1);
+  })
+  it('should return -1 if value cannot be found in array', function() {
+    assert.deepEqual(bruhdash.indexOf([1,2,3], 4), -1);
+  })
+})
+
+describe("#lastIndexOf", function() {
+  it('should return index of first value matched from right to left', function() {
+    assert.deepEqual(bruhdash.lastIndexOf([1,2,3], 2), 1)
+  })
+  it('should return -1 if value cannot be found in array', function() {
+    assert.deepEqual(bruhdash.lastIndexOf([1,2,3], 4), -1);
+  })
+})
+
+describe("#initial", function() {
+  it('should return all but the last element', function() {
+    assert.deepEqual(bruhdash.initial([1,2,3]), [1,2])
+  })
 })
 
 describe("#compact", function() {
@@ -57,7 +72,6 @@ describe("#dropRight", function() {
   it("should drop the correct amount of array elements from the right side", function() {
     assert.deepEqual(bruhdash.drop([1,2,3,4,5], 2), [1,2,3]);
   })
-
 })
 
 describe("#fill", function() {
@@ -66,43 +80,6 @@ describe("#fill", function() {
   })
   it("should fill an array with specified start and end indexes", function() {
     assert.deepEqual(bruhdash.fill([4,6,8,10], '*', 1, 3), [4, '*', '*', 10]);
-  })
-})
-
-describe("#first", function() {
-  it('should return the first element of an array', function(){
-    assert.deepEqual(bruhdash.first([1,2,3]), 1)
-  })
-})
-
-describe("#indexOf", function() {
-  it('should return index of first value matched from left to right', function() {
-    assert.deepEqual(bruhdash.indexOf([1,2,3], 2), 1);
-  })
-  it('should return -1 if value cannot be found in array', function() {
-    assert.deepEqual(bruhdash.indexOf([1,2,3], 4), -1);
-  })
-
-})
-
-describe("#initial", function() {
-  it('should return all but the last element', function() {
-    assert.deepEqual(bruhdash.initial([1,2,3]), [1,2])
-  })
-})
-
-describe("#last", function() {
-  it('should return the last element of an array', function() {
-    assert.deepEqual(bruhdash.last([1,2,3]), 3);
-  })
-})
-
-describe("#lastIndexOf", function() {
-  it('should return index of first value matched from right to left', function() {
-    assert.deepEqual(bruhdash.lastIndexOf([1,2,3], 2), 1)
-  })
-  it('should return -1 if value cannot be found in array', function() {
-    assert.deepEqual(bruhdash.lastIndexOf([1,2,3], 4), -1);
   })
 })
 
@@ -154,6 +131,12 @@ describe("#takeRight", function() {
   })
 })
 
+describe("#without", function() {
+  it('should return an array without the values specified', function() {
+    assert.deepEqual(bruhdash.without([1,2,3,4,5], 3,4), [1,2,5])
+  })
+})
+
 describe("#zip", function() {
   it('should return an array of grouped elements', function() {
     assert.deepEqual(bruhdash.zip([1,2,3], ['a','b','c']),[[1,'a'],[2,'b'],[3,'c']] );
@@ -166,10 +149,23 @@ describe("#unzip", function() {
   })
 })
 
-describe("#without", function() {
-  it('should return an array without the values specified', function() {
-    assert.deepEqual(bruhdash.without([1,2,3,4,5], 3,4), [1,2,5])
+describe("#chunk", function() {
+  it("should be able to chunk if the array length is unevenly divided by size", function() {
+    assert.deepEqual(bruhdash.chunk([1,2,3,4,5], 2), [[1,2], [3,4], [5]]);
   })
+  it("for empty arrays should return an empty array", function() {
+    assert.deepEqual(bruhdash.chunk([], 2), [] );
+  })
+  it("should return an empty array if size param is 0", function() {
+    assert.deepEqual(brudhash.chunk([1,2,3], 0), []);
+  })
+  it("should return the original array in an array if size param is equal to the array length", function() {
+    assert.deepEqual(bruhdash.chunk([1,2,3], 3), [[1,2,3]]);
+  })
+  it("should return the original array in an array if size param is more than array length", function(){
+    assert.deepEqual(bruhdash.chunk([1,2,3],5), [[1,2,3]]);
+  })
+  it("should ")
 })
 
 describe("#forEach", function() {
