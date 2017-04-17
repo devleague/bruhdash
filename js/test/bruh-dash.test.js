@@ -1,5 +1,3 @@
-// var expect = chai.expect;
-// var should = chai.should();
 var assert = chai.assert;
 
 describe("#first", function() {
@@ -40,22 +38,22 @@ describe("#initial", function() {
 
 describe("#compact", function() {
   it("should remove all falsy values", function() {
-    assert.deepEqual(brudhash.compact(1, false, null, 0, '', NaN, 2), [1,2]);
+    assert.deepEqual(bruhdash.compact([1, false, null, 0, '', NaN, 2]), [1,2]);
   })
 })
 
 describe("#difference", function() {
   it("should find the difference of two arrays", function() {
-    assert.deepEqual(brudash.difference([1,2,3], [1,2,5,1,2]), [3]);
+    assert.deepEqual(bruhdash.difference([1,2,3], [1,2,5,1,2]), [3]);
   })
 })
 
 describe("#drop", function() {
   it("should drop the first element of the array and return the remainder if no amount to drop is specified", function() {
-    assert.deepEqual(brudash.drop([1,2,3]), [2,3]);
+    assert.deepEqual(bruhdash.drop([1,2,3]), [2,3]);
   })
   it("should return the entire array if the amount to drop is 0", function(){
-    assert.deepEqual(bruhdash.drop([1,2,3]), [1,2,3]);
+    assert.deepEqual(bruhdash.drop([1,2,3], 0), [1,2,3]);
   })
   it("should drop the correct amount of array elements", function() {
     assert.deepEqual(bruhdash.drop([1,2,3,4,5], 2), [3,4,5]);
@@ -67,10 +65,10 @@ describe("#dropRight", function() {
     assert.deepEqual(bruhdash.dropRight([1,2,3]), [1,2]);
   })
   it("should return the entire array if the amount to drop is 0", function() {
-    assert.deepEqual(bruhdash.drop([1,2,3]), [1,2,3]);
+    assert.deepEqual(bruhdash.dropRight([1,2,3], 0), [1,2,3]);
   })
   it("should drop the correct amount of array elements from the right side", function() {
-    assert.deepEqual(bruhdash.drop([1,2,3,4,5], 2), [1,2,3]);
+    assert.deepEqual(bruhdash.dropRight([1,2,3,4,5], 2), [1,2,3]);
   })
 })
 
@@ -85,7 +83,7 @@ describe("#fill", function() {
 
 describe("#pull", function() {
   it('should pull all specified values from array', function() {
-    assert.deepEqual(bruhdash.pull(['a','b','c'], 'a', 'b'), ['c']);
+    assert.deepEqual(bruhdash.pull(['a','b','c'], ['a', 'b']), ['c']);
   })
 })
 
@@ -121,7 +119,7 @@ describe("#takeRight", function() {
     assert.deepEqual(bruhdash.takeRight([1,2,3,4,5], 3), [3,4,5]);
   })
   it('should return a slice of just the last element if no amount to take is specified', function() {
-    assert.deepEqual(bruhdash.takeRight([1,2,3]), 3);
+    assert.deepEqual(bruhdash.takeRight([1,2,3]), [3]);
   })
   it('should return an empty array if the amount to take is 0', function() {
     assert.deepEqual(bruhdash.takeRight([1,2,3], 0), []);
@@ -133,7 +131,7 @@ describe("#takeRight", function() {
 
 describe("#without", function() {
   it('should return an array without the values specified', function() {
-    assert.deepEqual(bruhdash.without([1,2,3,4,5], 3,4), [1,2,5])
+    assert.deepEqual(bruhdash.without([1,2,3,4,5], [3,4]), [1,2,5])
   })
 })
 
@@ -157,7 +155,7 @@ describe("#chunk", function() {
     assert.deepEqual(bruhdash.chunk([], 2), [] );
   })
   it("should return an empty array if size param is 0", function() {
-    assert.deepEqual(brudhash.chunk([1,2,3], 0), []);
+    assert.deepEqual(bruhdash.chunk([1,2,3], 0), []);
   })
   it("should return the original array in an array if size param is equal to the array length", function() {
     assert.deepEqual(bruhdash.chunk([1,2,3], 3), [[1,2,3]]);
@@ -165,21 +163,22 @@ describe("#chunk", function() {
   it("should return the original array in an array if size param is more than array length", function(){
     assert.deepEqual(bruhdash.chunk([1,2,3],5), [[1,2,3]]);
   })
-  it("should ")
 })
 
 describe("#forEach", function() {
   it('should be able to iterate over an array', function() {
     var result = [];
-    assert.deepEqual(bruhdash.forEach([1,2,3], function(item) {
+    bruhdash.forEach([1,2,3], function(item, key) {
       result.push(item)
-    }), [1,2,3])
+    })
+    assert.deepEqual(result, [1,2,3])
   })
   it('should be able to iterate over an object', function(){
     var result = [];
-    assert.deepEqual(bruhdash.forEach({'a':1, 'b':2, 'c':3}, function(item) {
+    bruhdash.forEach({'a':1, 'b':2, 'c':3}, function(item, key) {
       result.push(item)
-    }), [1,2,3])
+    })
+    assert.deepEqual(result, [1,2,3])
   })
 })
 
@@ -205,7 +204,7 @@ describe("#filter", function() {
   it('should be able to filter objects', function() {
     assert.deepEqual(bruhdash.filter({'a':1, 'b':2, 'c':3}, function(item) {
       return item % 2 === 0
-    }), [2,4])
+    }), {b: 2})
   })
 })
 
