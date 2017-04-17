@@ -42,9 +42,9 @@ describe("#compact", function() {
   })
 })
 
-describe("#difference", function() {
-  it("should find the difference of two arrays", function() {
-    assert.deepEqual(bruhdash.difference([1,2,3], [1,2,5,1,2]), [3]);
+describe("#slice", function() {
+  it('should return a new array of the start and end indices specified', function() {
+    assert.deepEqual(bruhdash.slice([1,2,3,4,5], 2,4), [3,4]);
   })
 })
 
@@ -69,33 +69,6 @@ describe("#dropRight", function() {
   })
   it("should drop the correct amount of array elements from the right side", function() {
     assert.deepEqual(bruhdash.dropRight([1,2,3,4,5], 2), [1,2,3]);
-  })
-})
-
-describe("#fill", function() {
-  it("should fill entire array if no start and end is specified", function(){
-    assert.deepEqual(bruhdash.fill([1,2,3], 'a'), ['a', 'a', 'a']);
-  })
-  it("should fill an array with specified start and end indexes", function() {
-    assert.deepEqual(bruhdash.fill([4,6,8,10], '*', 1, 3), [4, '*', '*', 10]);
-  })
-})
-
-describe("#pull", function() {
-  it('should pull all specified values from array', function() {
-    assert.deepEqual(bruhdash.pull(['a','b','c'], ['a', 'b']), ['c']);
-  })
-})
-
-describe("#pullAt", function() {
-  it('should pull the elements of the arrays from the indices specified', function() {
-    assert.deepEqual(bruhdash.pullAt([1,2,3,4,5], [1,3]), [1,3,5]);
-  })
-})
-
-describe("#slice", function() {
-  it('should return a new array of the start and end indices specified', function() {
-    assert.deepEqual(bruhdash.slice([1,2,3,4,5], 2,4), [3,4]);
   })
 })
 
@@ -129,9 +102,36 @@ describe("#takeRight", function() {
   })
 })
 
+describe("#fill", function() {
+  it("should fill entire array if no start and end is specified", function(){
+    assert.deepEqual(bruhdash.fill([1,2,3], 'a'), ['a', 'a', 'a']);
+  })
+  it("should fill an array with specified start and end indexes", function() {
+    assert.deepEqual(bruhdash.fill([4,6,8,10], '*', 1, 3), [4, '*', '*', 10]);
+  })
+})
+
+describe("#pull", function() {
+  it('should pull all specified values from array', function() {
+    assert.deepEqual(bruhdash.pull(['a','b','c'], ['a', 'b']), ['c']);
+  })
+})
+
+describe("#pullAt", function() {
+  it('should pull the elements of the arrays from the indices specified', function() {
+    assert.deepEqual(bruhdash.pullAt([1,2,3,4,5], [1,3]), [1,3,5]);
+  })
+})
+
 describe("#without", function() {
   it('should return an array without the values specified', function() {
     assert.deepEqual(bruhdash.without([1,2,3,4,5], [3,4]), [1,2,5])
+  })
+})
+
+describe("#difference", function() {
+  it("should find the difference of two arrays", function() {
+    assert.deepEqual(bruhdash.difference([1,2,3], [1,2,5,1,2]), [3]);
   })
 })
 

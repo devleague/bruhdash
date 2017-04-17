@@ -37,11 +37,15 @@ Implement the following methods to show your new Array chops:
 
 [compact(array)](https://lodash.com/docs#compact)
 
-[difference(array, [values])](https://lodash.com/docs#difference)
+[slice(array, [start=0], [end=array.length])](https://lodash.com/docs#slice)
 
 [drop(array, [n=1])](https://lodash.com/docs#drop)
 
 [dropRight(array, [n=1])](https://lodash.com/docs#dropRight)
+
+[take(array, [n=1])](https://lodash.com/docs#take)
+
+[takeRight(array, [n=1])](https://lodash.com/docs#takeRight)
 
 [fill(array, value, [start=0], [end=array.length])](https://lodash.com/docs#fill)
 
@@ -49,13 +53,9 @@ Implement the following methods to show your new Array chops:
 
 [pullAt(array, [indexes])](https://lodash.com/docs#pullAt)
 
-[slice(array, [start=0], [end=array.length])](https://lodash.com/docs#slice)
-
-[take(array, [n=1])](https://lodash.com/docs#take)
-
-[takeRight(array, [n=1])](https://lodash.com/docs#takeRight)
-
 [without(array, [values])](https://lodash.com/docs#without)
+
+[difference(array, [values])](https://lodash.com/docs#difference)
 
 [zip([arrays])](https://lodash.com/docs#zip)
 

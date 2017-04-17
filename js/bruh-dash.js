@@ -32,8 +32,8 @@ global.bruhdash = {
 
   },
 
-  // returns an array with specified values excluded
-  difference: function() {
+  // creates a slice of an array from the start index up to but not including the end index
+  slice: function () {
 
   },
 
@@ -44,6 +44,16 @@ global.bruhdash = {
 
   // returns a slice of array with n elements dropped from the end
   dropRight: function() {
+
+  },
+
+  // creates a slice of an array with n elements taken from the beginning
+  take: function () {
+
+  },
+
+  // creates a slice of an array with n elements taken from the end
+  takeRight: function () {
 
   },
 
@@ -63,25 +73,19 @@ global.bruhdash = {
 
   },
 
-  // creates a slice of an array from the start index up to but not including the end index
-  slice: function () {
-
-  },
-
-  // creates a slice of an array with n elements taken from the beginning
-  take: function () {
-
-  },
-
-  // creates a slice of an array with n elements taken from the end
-  takeRight: function () {
-
-  },
-
   // creates an array excluding all the specified values
   without: function() {
 
   },
+
+  // returns an array with specified values excluded
+  difference: function() {
+
+  },
+
+  /*******************
+   *  STRETCH GOALS! *
+   *******************/ 
 
   // creates an array of grouped elements
   zip: function () {
@@ -93,11 +97,6 @@ global.bruhdash = {
 
   },
 
- 
-  /*******************
-   *  STRETCH GOALS! *
-   *******************/ 
-
   // creates an array of elements into groups of length of specified size
   chunk: function(){
 
@@ -108,7 +107,6 @@ global.bruhdash = {
   forEach: function() {
 
   },
-
 
   // creates an array of values by running each element in collection thru the iteratee
   // Note: this should work for arrays and objects
