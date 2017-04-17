@@ -5,8 +5,8 @@ _It is your job to implment your first library. Bruh._
 
 ###Setup:
 
-####Install http-server:
-`npm install -g http-server`
+####Install live-server:
+`npm install -g live-server`
 
 You will need to do your work in the browser by starting live-server in your terminal:
 
