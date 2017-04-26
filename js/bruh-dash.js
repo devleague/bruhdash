@@ -1,5 +1,12 @@
 var global = window || GLOBAL;
 
+/****************************************************************************************
+ * Function signatures have been intentionally left out of the comments describing what *
+ * each function does so that you can have practice looking up documentation. Please    *
+ * Reference the documentation at [ https://lodash.com/docs/4.17.4 ] You should have    *
+ * documentation up in a browser window at all times when working on projects!          *
+ ****************************************************************************************/
+
 global.bruhdash = {
 
   // returns the first element of an array
