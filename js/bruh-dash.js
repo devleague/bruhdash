@@ -198,20 +198,15 @@ global.bruhdash = {
   // creates an array of elements into groups of length of specified size
   chunk: function(array, size=1){
     var newArray = [];
-    if (array.length==0){ return []; }
+    if (array.length==0 || size==0){ return []; }
 
-    if (size>array.length){
+    if (size>=array.length){
       newArray.push(array);
       return newArray;
     }
+
     var n = 0;
-    var groupSize = 0;
-    if (array.length%size==0){
-      groupSize = array.length/size;
-    } else {
-      groupSize = (array.length/size - array.length%size) + 1;
-    }
-    for (var i=0; i<groupSize; i++){
+    for (var i=0; i<Math.ceil(array.length/size); i++){
       var iArr = [];
       for (j=0; j<size && n<array.length ; j++){
         iArr.push(array[n]);
@@ -219,34 +214,36 @@ global.bruhdash = {
       }
       newArray.push(iArr);
     }
+
     return newArray;
   },
 
   // iterates over elements of a collection and invokes iteratee for each element
   // Note: this should work for arrays and objects
-  forEach: function(object, func) {
-    if (Array.isArray(object)){
-      for (i=0; i<object.length; i++){
-        func(object[i]);
+  forEach: function(collection, iteratee) {
+    if (Array.isArray(collection)){
+      for (var i=0; i<collection.length; i++){
+        iteratee(collection[i]);
       }
     } else {
-      for (i in object){
-        func(object[i]);
-      }
+        for (var j in collection){
+          iteratee(collection[j]);
+        }
     }
   },
 
   // creates an array of values by running each element in collection thru the iteratee
   // Note: this should work for arrays and objects
-  map: function(object, f) {
+  map: function(collection, iteratee) {
     var newArray = [];
-    if (Array.isArray(object)){
-      for (i=0; i<object.length; i++){
-        newArray.push(f(object[i]));
+    if (Array.isArray(collection)){
+      for (var i=0; i<collection.length; i++){
+        newArray.push(iteratee(collection[i]));
       }
-    } else { for(i in object){
-        newArray.push(f(object[i]));
-      }
+    } else {
+        for(var j in collection){
+          newArray.push(iteratee(collection[j]));
+        }
     }
     return newArray;
   },
@@ -257,21 +254,21 @@ global.bruhdash = {
 
   // iterates over elements of a collection and returns all elements that the predicate returns truthy for
   // Note: this should work for arrays and objects
-  filter: function(collection, f) {
+  filter: function(collection, predicate) {
 
     if (Array.isArray(collection)){
       var newArray = [];
-      for (i=0; i<collection.length; i++){
-        if (f(collection[i])){
+      for (var i=0; i<collection.length; i++){
+        if (predicate(collection[i])){
           newArray.push(collection[i]);
         }
       }
       return newArray;
     } else {
       var newObj = {};
-      for(i in collection){
-        if (f(collection[i])) {
-          newObj[i] = collection[i];
+      for(var j in collection){
+        if (predicate(collection[j])) {
+          newObj[j] = collection[j];
         };
       }
       return newObj;
@@ -283,13 +280,13 @@ global.bruhdash = {
   // Note: this should work for arrays and objects
   reduce: function(collection, iteratee, accumulator=0) {
     if (Array.isArray(collection)){
-      for (i=0; i<collection.length; i++){
+      for (var i=0; i<collection.length; i++){
         accumulator = iteratee(accumulator, collection[i]);
       }
       return accumulator;
     } else {
-      for(i in collection){
-        accumulator = iteratee(accumulator, collection[i]);
+      for(var j in collection){
+        accumulator = iteratee(accumulator, collection[j]);
       }
       return accumulator;
     }
