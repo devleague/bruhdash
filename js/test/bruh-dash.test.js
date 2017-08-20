@@ -113,7 +113,7 @@ describe("#fill", function() {
 
 describe("#pull", function() {
   it('should pull all specified values from array', function() {
-    assert.deepEqual(bruhdash.pull(['a','b','c'], ['a', 'b']), ['c']);
+    assert.deepEqual(bruhdash.pull(['a','b','c'], 'a', 'b'), ['c']);
   })
 })
 
