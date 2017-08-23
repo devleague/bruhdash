@@ -24,7 +24,7 @@ global.bruhdash = {
 
   },
 
-  // returns the index of the first matching element from left to right
+  // returns the index of the first matching element from right to left
   lastIndexof: function () {
 
   },
