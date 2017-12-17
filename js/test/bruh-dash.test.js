@@ -38,7 +38,7 @@ describe("#initial", function() {
 
 describe("#compact", function() {
   it("should remove all falsy values", function() {
-    assert.deepEqual(bruhdash.compact([1, false, null, 0, '', NaN, 2]), [1,2]);
+    assert.deepEqual(bruhdash.compact([1, false, null, 0, '', 2]), [1,2]);
   })
 })
 
