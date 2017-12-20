@@ -134,30 +134,67 @@ global.bruhdash = {
 
   // creates an array of grouped elements
   zip: function (arg1, arg2) {
-    console.log(arguments);
-    arg1.forEach((element);
+    let outerArray = [];
+    for(var i = 0; i < arg1.length; i++){
+      let innerArray = [arg1[i], arg2[i]];
+      outerArray.push(innerArray);
+    }
+    return outerArray;
   },
 
   // creates an array of grouped elements in their pre-zip configuration
-  unzip: function () {
-
+  unzip: function (arr) {
+    var outerArray = [];
+    arr[0].forEach((el) => outerArray.push([]));
+    arr.forEach((tuple, tupleIndex) => {
+      for(let i = 0; i < tuple.length; i++){
+        outerArray[i].push(tuple[i]);
+      }
+    });
+    return outerArray;
   },
 
   // creates an array of elements into groups of length of specified size
-  chunk: function(){
-
+  chunk: function(arr, arrLength){
+    let outerArray = [];
+    if (arrLength === 0) {
+      return [];
+    } else if(typeof(arr[0]) === 'number' && typeof(arrLength) === 'number'){
+      for(var i = 0; i < arr.length; i++){
+        var modulo = i % arrLength;
+        if(modulo === 0) {
+          outerArray.push([]);
+          outerArray[i / arrLength][modulo] = arr[i];
+        } else {
+          outerArray[(i - modulo) / arrLength][modulo] = arr[i];
+        }
+      }
+    }
+    return outerArray;
   },
 
   // iterates over elements of a collection and invokes iteratee for each element
   // Note: this should work for arrays and objects
-  forEach: function() {
-
+  forEach: function(arg1, arg2) {
+    if(!Array.isArray(arg1)) {
+      arg1 = Object.values(arg1);
+    }
+    for(var i = 0; i < arg1.length; i++) {
+      arg2(arg1[i], i, arg1);
+    }
   },
 
   // creates an array of values by running each element in collection thru the iteratee
   // Note: this should work for arrays and objects
-  map: function() {
-
+  map: function(arg1, arg2) {
+    if(!Array.isArray(arg1)) {
+      arg1 = Object.values(arg1);
+    }
+    var newArray = [];
+    for(var i = 0; i < arg1.length; i++) {
+      newArray.push(arg2(arg1[i], i, arg1));
+    }
+    return newArray;
   },
 
   /*************************
@@ -166,14 +203,41 @@ global.bruhdash = {
 
   // iterates over elements of a collection and returns all elements that the predicate returns truthy for
   // Note: this should work for arrays and objects
-  filter: function() {
-
+  filter: function(arg1, arg2) {
+    var newArray = '';
+    if(Array.isArray(arg1)){
+      newArray = [];
+      for(var i = 0; i < arg1.length; i++){
+        if(arg2(arg1[i], i, arg1)){
+          newArray.push(arg1[i]);
+        }
+      }
+    } else {
+////////////object filter Function
+      newArray = arg1;
+      var objValues = Object.values(arg1);
+      var objKeys = Object.keys(arg1);
+      for(var x = 0; x< objValues.length; x++){
+        if(!arg2(objValues[x], x, objValues)){
+          var deletedKey = objKeys[x];
+          delete newArray[deletedKey];
+        }
+      }
+    }
+    return newArray;
   },
 
   // Reduces the collection to a value which is the accumulated result of running each element
   // in the collection through an iteratee
   // Note: this should work for arrays and objects
-  reduce: function() {
-
+  reduce: function(arg1, arg2) {
+    var newArray = 0;
+    if(!Array.isArray(arg1)) {
+      arg1 = Object.values(arg1);
+    }
+    for(var i = 0; i < arg1.length; i++){
+      newArray += arg2(0, arg1[i], i, arg1);
+    }
+    return newArray;
   }
 };
