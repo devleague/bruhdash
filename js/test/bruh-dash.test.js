@@ -125,7 +125,7 @@ describe("#pullAt", function() {
 
 describe("#without", function() {
   it('should return an array without the values specified', function() {
-    assert.deepEqual(bruhdash.without([1,2,3,4,5], [3,4]), [1,2,5])
+    assert.deepEqual(bruhdash.without([1,2,3,4,5], 3,4), [1,2,5])
   })
 })
 
