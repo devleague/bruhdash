@@ -119,7 +119,7 @@ describe("#pull", function() {
 
 describe("#pullAt", function() {
   it('should pull the elements of the arrays from the indices specified', function() {
-    assert.deepEqual(bruhdash.pullAt([1,2,3,4,5], [1,3]), [1,3,5]);
+    assert.deepEqual(bruhdash.pullAt([1,2,3,4,5], [1,3]), [2,4]);
   })
 })
 
