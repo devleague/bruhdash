@@ -73,8 +73,11 @@ global.bruhdash = {
   },
 
   // creates a slice of an array with n elements taken from the beginning
-  take: function (array, [n=1]) {
-
+  take: function (array, n) {
+    if (n === undefined) {
+      return array.slice(0, 1);
+    }
+    return array.slice(0, n);
   },
 
   // creates a slice of an array with n elements taken from the end
