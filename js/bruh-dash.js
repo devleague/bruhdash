@@ -62,12 +62,18 @@ global.bruhdash = {
   },
 
   // returns a slice of array with n elements dropped from the end
-  dropRight: function() {
-
+  dropRight: function(array, n) {
+    if (n === undefined) {
+      n = 1;
+    }
+    for (let i = 0; i < n; i++) {
+      array.pop();   
+    }
+    return array;
   },
 
   // creates a slice of an array with n elements taken from the beginning
-  take: function () {
+  take: function (array, [n=1]) {
 
   },
 
