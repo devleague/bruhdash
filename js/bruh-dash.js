@@ -99,8 +99,18 @@ global.bruhdash = {
   },
 
   // removes all given values from an array
-  pull: function () {
-
+  pull: function (array) {
+    let result = [];
+    let map = new Map();
+    for (let index = 1; index < arguments.length; index++) {
+      map.set(arguments[index], 0);      
+    }
+    array.forEach(function (elem) {
+      if (map.get(elem) !== 0) {
+        result.push(elem);
+      }
+    });
+    return result;
   },
 
   // removes elements of an array corresponding to the given indices
