@@ -267,8 +267,19 @@ global.bruhdash = {
 
   // creates an array of values by running each element in collection thru the iteratee
   // Note: this should work for arrays and objects
-  map: function() {
-
+  map: function(collection, iteratee) {
+    if (Array.isArray(collection)) {
+      return collection.map(iteratee);
+    }
+    let result = [];
+    if ((typeof collection) === "object") {
+      for (const key in collection) {
+        if (collection.hasOwnProperty(key)) {
+          result.push(iteratee(collection[key],key));
+        }
+      }
+      return result;
+    }
   },
 
   /*************************
