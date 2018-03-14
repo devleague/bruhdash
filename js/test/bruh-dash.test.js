@@ -119,13 +119,13 @@ describe("#pull", function() {
 
 describe("#pullAt", function() {
   it('should pull the elements of the arrays from the indices specified', function() {
-    assert.deepEqual(bruhdash.pullAt([1,2,3,4,5], [1,3]), [1,3,5]);
+    assert.deepEqual(bruhdash.pullAt([1,2,3,4,5], [1,3]), [2,4]);
   })
 })
 
 describe("#without", function() {
   it('should return an array without the values specified', function() {
-    assert.deepEqual(bruhdash.without([1,2,3,4,5], [3,4]), [1,2,5])
+    assert.deepEqual(bruhdash.without([1,2,3,4,5], 3,4), [1,2,5])
   })
 })
 

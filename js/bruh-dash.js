@@ -21,19 +21,23 @@ global.bruhdash = {
 
   // returns the index of the first matching element from left to right
   indexOf: function (array, value, fromIndex) {
+    
     return array.indexOf(value, fromIndex);
 
   },
 
   // returns the index of the first matching element from right to left
-  lastIndexOf: function (array, value) {
-    return array.lastIndexOf(value);
+  lastIndexOf: function (array, value, fromIndex) {
+    if (fromIndex === undefined) {
+      fromIndex = array.length - 1;
+    }
+    return array.lastIndexOf(value, fromIndex);
   },
 
   // returns an array with all elements except for the last element
   initial: function (array) {
-    array.pop();
-    return array;
+    return array.slice(0,array.length-1);
+    // return array;
   },
   
   // returns an array with all falsey values removed
@@ -100,6 +104,51 @@ global.bruhdash = {
 
   // removes all given values from an array
   pull: function (array) {
+    let map = new Map();
+    for (let index = 1; index < arguments.length; index++) {
+      map.set(arguments[index], 0);      
+    }
+    for (let index = array.length - 1; index >= 0; index--) {
+      if (map.get(array[index]) === 0) {
+        array.splice(index, 1);
+      }
+    }
+    return array;
+  },
+
+  // removes elements of an array corresponding to the given indices
+  pullAt: function (array) {
+    let pulledItems = [];
+    let temp = array;
+    let map = new Map();
+    let indices = [];
+    for (let index = 1; index < arguments.length; index++) {
+      let arg = arguments[index];
+      if ((typeof arg) === 'number') {
+        pulledItems.push(temp[arg]);
+        map.set(arg,arg);
+
+      }
+      if (Array.isArray(arg)) {
+        arg.forEach(function(elem) {
+          pulledItems.push(temp[elem]);
+          map.set(elem,elem);
+          
+        });
+      }
+    }
+    map.forEach(function(value, key){
+      indices.push(key);
+    });
+    indices = indices.sort();
+    for (let index = indices.length - 1; index >= 0; index--) {
+      array.splice(indices[index], 1);      
+    }
+    return pulledItems;
+  },
+
+  // creates an array excluding all the specified values
+  without: function(array) {
     let result = [];
     let map = new Map();
     for (let index = 1; index < arguments.length; index++) {
@@ -113,19 +162,24 @@ global.bruhdash = {
     return result;
   },
 
-  // removes elements of an array corresponding to the given indices
-  pullAt: function () {
-
-  },
-
-  // creates an array excluding all the specified values
-  without: function() {
-
-  },
-
   // returns an array with specified values excluded
-  difference: function() {
-
+  difference: function(array) {
+    let result = [];
+    let map = new Map();
+    for (let index = 1; index < arguments.length; index++) {
+      let arg = arguments[index];
+      if (Array.isArray(arg)) {
+        arg.forEach(function(elem){
+          map.set(elem, 0);      
+        });
+      }
+    }
+    array.forEach(function (elem) {
+      if (map.get(elem) !== 0) {
+        result.push(elem);
+      }
+    });
+    return result;
   },
 
   /*******************
@@ -134,11 +188,42 @@ global.bruhdash = {
 
   // creates an array of grouped elements
   zip: function () {
-
+    let result = [];
+    let arraySize = 0;
+    for (let i = 0; i < arguments.length; i++) {
+      let arg = arguments[i];
+      if (Array.isArray(arg)) {
+        if (arg.length > arraySize) {
+          arraySize = arg.length;
+        }
+      }      
+    }
+    for (let i = 0; i < arraySize; i++) {
+      result.push([]);      
+    }
+    for (let i = 0; i < arguments.length; i++) {
+      let arg = arguments[i];
+      if (Array.isArray(arg)) {
+        for (let i  = 0; i < arraySize; i++) {
+          result[i].push(arg[i]);
+        }        
+      }
+    }    
+    return result;
   },
 
   // creates an array of grouped elements in their pre-zip configuration
-  unzip: function () {
+  unzip: function (array) {
+    let result = [];
+    for (let i = 0; i < array[0].length; i++) {
+      result.push([]);      
+    }
+    for (let i = 0; i < array.length; i++) {
+      for (let j = 0; j < array[i].length; j++) {
+        result[j].push(array[i][j]);
+      }      
+    }
+    return result;
 
   },
 
