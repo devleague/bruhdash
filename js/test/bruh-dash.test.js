@@ -204,7 +204,7 @@ describe("#filter", function() {
   it('should be able to filter objects', function() {
     assert.deepEqual(bruhdash.filter({'a':1, 'b':2, 'c':3}, function(item) {
       return item % 2 === 0
-    }), {b: 2})
+    }), [2])
   })
 })
 
