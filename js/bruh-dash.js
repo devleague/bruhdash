@@ -228,8 +228,26 @@ global.bruhdash = {
   },
 
   // creates an array of elements into groups of length of specified size
-  chunk: function(){
-
+  chunk: function(array, size){
+    let result = [];
+    let temp = [];
+    if (size === 0) {
+      return result;
+    }
+    for (let i = 0; i < array.length; i++) {
+      if (temp.length < size) {
+        temp.push(array[i]);
+      } else {
+        result.push(temp);
+        temp = [];
+        temp.push(array[i])
+      }
+      
+    }
+    if (temp.length !== 0) {
+      result.push(temp);
+    }
+    return result;
   },
 
   // iterates over elements of a collection and invokes iteratee for each element
