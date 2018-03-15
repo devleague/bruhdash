@@ -44,7 +44,7 @@ global.bruhdash = {
   compact: function(array) {
     let compactArray = [];
     array.forEach(function(elem){
-      if (elem !== false && elem !== null && elem !== 0 && elem !== "" && elem !== undefined && !isNaN(elem)) {
+      if (elem) {
         compactArray.push(elem);
       }
     });
@@ -288,14 +288,50 @@ global.bruhdash = {
 
   // iterates over elements of a collection and returns all elements that the predicate returns truthy for
   // Note: this should work for arrays and objects
-  filter: function() {
-
+  filter: function(collection, predicate) {
+    if (Array.isArray(collection)) {
+      return collection.filter(predicate);
+    }
+    let result = [];
+    if ((typeof collection) === "object") {
+      for (const key in collection) {
+        if (collection.hasOwnProperty(key)) {
+          if (predicate(collection[key],key)) {
+            result.push(collection[key]);
+          }
+        }
+      }
+      return result;
+    }
   },
 
   // Reduces the collection to a value which is the accumulated result of running each element
   // in the collection through an iteratee
   // Note: this should work for arrays and objects
-  reduce: function() {
+  reduce: function(collection, iteratee, accumulator) {
     
+    if (Array.isArray(collection)) {
+      if (accumulator === undefined) {      
+        return collection.reduce(iteratee);
+      } else {
+        return collection.reduce(iteratee, accumulator);
+      }
+    }
+    let result = null;
+    if ((typeof collection) === "object") {
+      let result = accumulator;
+      for (const key in collection) {
+        if (collection.hasOwnProperty(key)) {
+          if (result === undefined) {
+            result = collection[key];
+          } else {
+            result = iteratee(result, collection[key], key);
+
+          }
+        }
+      }
+      
+      return result;
+    }
   }
 };
