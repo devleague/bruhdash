@@ -6,7 +6,7 @@ var global = window || GLOBAL;
  * Reference the documentation at [ https://lodash.com/docs/4.17.4 ] You should have    *
  * documentation up in a browser window at all times when working on projects!          *
  ****************************************************************************************/
-
+//
 global.bruhdash = {
 
   // returns the first element of an array
@@ -68,49 +68,144 @@ global.bruhdash = {
   },
 
   // returns a slice of array with n elements dropped from the beignning
-  drop: function(){
-
+  drop: function(arr, n){
+    var result = [];
+    if(n === undefined) {
+      arr.shift()
+      return arr;
+    }
+    if(n === 0) {
+      return arr;
+    }
+    for(var i = 0; i < arr.length; i++) {
+      if( i > n -1) {
+      result.push(arr[i]) 
+    }
+  }
+  return result;
   },
 
   // returns a slice of array with n elements dropped from the end
-  dropRight: function() {
-
+  dropRight: function(arr, n) {
+    var result = [];
+    if(n === 0) {
+      return arr;
+    }
+    ir(n === undefined) {
+      arr.pop()
+      return arr;
+    }
+    var lastIdx = arr.length -3
+    for(var i = 0; i < arr.length; i++) {
+      if(i < lastIdx + 1) {
+        result.push(arr[i]);
+      }
+    }
+    return result;
   },
 
   // creates a slice of an array with n elements taken from the beginning
-  take: function () {
-
+  take: function (arr, n) {
+    if(n === 0) {
+      return [];
+    }
+    if(n > arr.length -1) {
+      return arr;
+    }
+    if(n === undefined) {
+      return [arr[0]]
+    }
+    return bruhdash.slice(arr, 0, n);
   },
 
   // creates a slice of an array with n elements taken from the end
-  takeRight: function () {
-
+  takeRight: function (arr, n) {
+    var result = [];
+    var count = 0; 
+    if(n === 0) {
+      return [];
+    }
+    if(n > arr.length -1) {
+      return arr;
+    }
+    if(n === undefined) {
+      return [arr[arr.length-1]];
+    }
+    for(var i = arr.length -1; i>= -1; i--) {
+      if(count < n) {
+        result.unshift(arr[i]);
+        count += 1;
+      }
+    }
+    return reuslt;
   },
 
   // fills elements of array with specified value from the start index
   // up to but not including the end index
-  fill: function() {
-
+  fill: function(arr, thing, start, end) {
+    var result = [];
+    if(start === undefined && end === undefined) {
+      for(var i = 0; i < arr.length; i++) {
+        if(i>= start && i < end) {
+          result.push(thing)
+        } else {
+          result.push(arr[i]);
+        }
+      }
+      return result;
+    }
   },
 
   // removes all given values from an array
-  pull: function () {
-
+  pull: function (arr, values) {
+    for(var i = 0; i < arr.length; i++) {
+      for(var j = 0; j < values.length; j++) {
+        if(arr[i] === values[j]) {
+          arr.splice(i,1)
+        }
+      }
+    }
+    return arr;
   },
 
   // removes elements of an array corresponding to the given indices
-  pullAt: function () {
-
+  pullAt: function (arr, indexes) {
+    for(var i = 0; i < arr.length; i++) {
+      for(var j = 0; j < indexes.length; j++) {
+        if(i === indexes[j]) {
+          arr[i] = false;
+        }
+      }
+    }
+    return bruhdash.compact(arr);
   },
 
   // creates an array excluding all the specified values
-  without: function() {
-
+  without: function(arr, values) {
+    var result = arr.slice();
+    for(var i = 0; i < result.length; i++) {
+      for(var j = 0; j < values.length; j++) {
+        if(result[i] === values[j]) {
+          result.splice(i, 1);
+        }
+      }
+    }
+    return result;
   },
 
   // returns an array with specified values excluded
-  difference: function() {
-
+  difference: function(arr, values) {
+    var result = [];
+    var map = {};
+    for(var i = 0; i < values.length; i++) {
+      map[values[i]] = true;
+    }
+    for(var i = 0; i < arr.length; i++) {
+      if(map[arr[i]] === undefinied) {
+        result.push(arr[i]);
+      }
+    }
+    return result;
   },
 
   /*******************
